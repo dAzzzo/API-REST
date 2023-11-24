@@ -67,12 +67,12 @@ app.delete("/coches/:id", (request, response) => {
 
 ////Concesionario
 
-// Listamos los concesionarios
+// obtener todos los concesionarios
 app.get("/concesionarios", (request, response) => {
   response.json(concesionarios);
 });
 
-// Añadir un nuevo concesionarios
+// crea un nuevo concesionario
 app.post("/concesionarios", (request, response) => {
   coches.push(request.body);
   response.json({ message: "ok" });
@@ -80,21 +80,21 @@ app.post("/concesionarios", (request, response) => {
 
 ////Concesionario id
 
-// Obtener un solo concesionarios
+//  obtener un concesionario
 app.get("/concesionarios/:id", (request, response) => {
   const id = request.params.id;
   const result = concesionarios[id];
   response.json({ result });
 });
 
-// Actualizar un solo coche
+// actualizar un concesionario
 app.put("/concesionarios/:id", (request, response) => {
   const id = request.params.id;
   concesionarios[id] = request.body;
   response.json({ message: "ok" });
 });
 
-// Borrar un elemento del array
+// borra un concesionario
 app.delete("/concesionarios/:id", (request, response) => {
   const id = request.params.id;
   concesionarios = concesionarios.filter((item) => concesionarios.indexOf(item) !== id);
@@ -104,14 +104,14 @@ app.delete("/concesionarios/:id", (request, response) => {
 
 //concesionario id  coches
 
-// Obtener un solo concesionarios
+// Devuelve todos los coches del concesionario pasado por id (solo los coches)
 app.get("/concesionarios/:id/coches", (request, response) => {
   const id = request.params.id;
   const result = concesionarios[id];
   response.json({ result });
 });
 
-// Añadir un nuevo concesionarios
+// Añade un nuevo coche al concesionario pasado por id.
 app.post("/concesionarios/:id/coches", (request, response) => {
   coches.push(request.body);
   response.json({ message: "ok" });
@@ -119,21 +119,21 @@ app.post("/concesionarios/:id/coches", (request, response) => {
 
 ////concesionario id coches cocheld
 
-// Obtener un solo concesionarios
+// Obtiene el coche cuyo id sea cocheId, del concesionario pasado por id
 app.get("/concesionarios/:id/coches/:cocheId", (request, response) => {
   const id = request.params.id;
   const result = concesionarios[id];
   response.json({ result });
 });
 
-// Actualizar un solo coche
+// Actualiza el coche cuyo id sea cocheId, del concesionario pasado por id
 app.put("/concesionarios/:id/coches/:cocheId", (request, response) => {
   const id = request.params.id;
   concesionarios[id] = request.body;
   response.json({ message: "ok" });
 });
 
-// Borrar un elemento del array
+//  Borra el coche cuyo id sea cocheId, del concesionario pasado por id
 app.delete("/concesionarios/:id/coches/:cocheId", (request, response) => {
   const id = request.params.id;
   concesionarios = concesionarios.filter((item) => concesionarios.indexOf(item) !== id);
