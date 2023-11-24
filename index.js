@@ -62,3 +62,8 @@ app.delete("/coches/:id", (request, response) => {
 
   response.json({ message: "ok" });
 });
+
+// Listamos los concesionarios
+app.get("/concesionarios", (request, response) => {
+  response.json(concesionarios);
+});
