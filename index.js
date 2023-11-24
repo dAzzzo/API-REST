@@ -30,6 +30,12 @@ let coches = [
   { marca: "Nissan", modelo: "Skyline R34" },
 ];
 
+//Array de concesionario
+let concesionarios = [
+  { nombre: "nombreConcesionario1", direccion: "calle-alvarez", listado: "6" },
+  { nombre: "nombreConcesionario2", direccion: "calle-rodrigez", listado: "4" },
+];
+
 //coches
 
 // Lista todos los coches
