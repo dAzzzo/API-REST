@@ -132,3 +132,11 @@ app.put("/concesionarios/:id/coches/:cocheId", (request, response) => {
   concesionarios[id] = request.body;
   response.json({ message: "ok" });
 });
+
+// Borrar un elemento del array
+app.delete("/concesionarios/:id/coches/:cocheId", (request, response) => {
+  const id = request.params.id;
+  concesionarios = concesionarios.filter((item) => concesionarios.indexOf(item) !== id);
+
+  response.json({ message: "ok" });
+});
