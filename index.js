@@ -77,3 +77,10 @@ app.post("/concesionarios", (request, response) => {
   coches.push(request.body);
   response.json({ message: "ok" });
 });
+
+// Obtener un solo concesionarios
+app.get("/concesionarios/:id", (request, response) => {
+  const id = request.params.id;
+  const result = concesionarios[id];
+  response.json({ result });
+});
