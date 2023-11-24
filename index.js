@@ -78,6 +78,8 @@ app.post("/concesionarios", (request, response) => {
   response.json({ message: "ok" });
 });
 
+//Concesionario id
+
 // Obtener un solo concesionarios
 app.get("/concesionarios/:id", (request, response) => {
   const id = request.params.id;
@@ -89,5 +91,13 @@ app.get("/concesionarios/:id", (request, response) => {
 app.put("/concesionarios/:id", (request, response) => {
   const id = request.params.id;
   concesionarios[id] = request.body;
+  response.json({ message: "ok" });
+});
+
+// Borrar un elemento del array
+app.delete("/concesionarios/:id", (request, response) => {
+  const id = request.params.id;
+  concesionarios = concesionarios.filter((item) => concesionarios.indexOf(item) !== id);
+
   response.json({ message: "ok" });
 });
