@@ -30,6 +30,8 @@ let coches = [
   { marca: "Nissan", modelo: "Skyline R34" },
 ];
 
+//coches
+
 // Lista todos los coches
 app.get("/coches", (request, response) => {
   response.json(coches);
@@ -63,7 +65,15 @@ app.delete("/coches/:id", (request, response) => {
   response.json({ message: "ok" });
 });
 
+//Concesionario
+
 // Listamos los concesionarios
 app.get("/concesionarios", (request, response) => {
   response.json(concesionarios);
+});
+
+// Añadir un nuevo concesionarios
+app.post("/concesionarios", (request, response) => {
+  coches.push(request.body);
+  response.json({ message: "ok" });
 });
