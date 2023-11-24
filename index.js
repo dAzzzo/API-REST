@@ -74,7 +74,7 @@ app.get("/concesionarios", (request, response) => {
 
 // crea un nuevo concesionario
 app.post("/concesionarios", (request, response) => {
-  coches.push(request.body);
+  concesionarios.push(request.body);
   response.json({ message: "ok" });
 });
 
@@ -113,7 +113,7 @@ app.get("/concesionarios/:id/coches", (request, response) => {
 
 // Añade un nuevo coche al concesionario pasado por id.
 app.post("/concesionarios/:id/coches", (request, response) => {
-  coches.push(request.body);
+  concesionarios.push(request.body);
   response.json({ message: "ok" });
 });
 
