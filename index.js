@@ -84,3 +84,10 @@ app.get("/concesionarios/:id", (request, response) => {
   const result = concesionarios[id];
   response.json({ result });
 });
+
+// Actualizar un solo coche
+app.put("/concesionarios/:id", (request, response) => {
+  const id = request.params.id;
+  concesionarios[id] = request.body;
+  response.json({ message: "ok" });
+});
