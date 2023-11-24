@@ -101,3 +101,18 @@ app.delete("/concesionarios/:id", (request, response) => {
 
   response.json({ message: "ok" });
 });
+
+//concesionario id  coches
+
+// Obtener un solo concesionarios
+app.get("/concesionarios/:id/coches", (request, response) => {
+  const id = request.params.id;
+  const result = concesionarios[id];
+  response.json({ result });
+});
+
+// Añadir un nuevo concesionarios
+app.post("/concesionarios/:id/coches", (request, response) => {
+  coches.push(request.body);
+  response.json({ message: "ok" });
+});
