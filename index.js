@@ -40,7 +40,7 @@ let concesionarios = [
     listado: "4",
     coches: [
       { marca: "Opel", modelo: "Corsa" },
-      { marca: "Volvo", modelo: "RTX" },
+      { marca: "Volvo", modelo: "xC40" },
     ],
   },
 ];
