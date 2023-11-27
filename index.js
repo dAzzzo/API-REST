@@ -23,17 +23,26 @@ app.listen(port, () => {
   console.log(`Servidor desplegado en puerto: ${port}`);
 });
 
-// Definimos una estructura de datos
-// (temporal hasta incorporar una base de datos)
-let coches = [
-  { marca: "Renault", modelo: "Clio" },
-  { marca: "Nissan", modelo: "Skyline R34" },
-];
-
 // Array de concesionario
 let concesionarios = [
-  { nombre: "nombreConcesionario1", direccion: "calle-alvarez", listado: "6" },
-  { nombre: "nombreConcesionario2", direccion: "calle-rodrigez", listado: "4" },
+  {
+    nombre: "nombreConcesionario1",
+    direccion: "calle-alvarez",
+    listado: "6",
+    coches: [
+      { marca: "Renault", modelo: "Clio" },
+      { marca: "Nissan", modelo: "Skyline R34" },
+    ],
+  },
+  {
+    nombre: "nombreConcesionario2",
+    direccion: "calle-rodrigez",
+    listado: "4",
+    coches: [
+      { marca: "Opel", modelo: "Corsa" },
+      { marca: "Volvo", modelo: "RTX" },
+    ],
+  },
 ];
 
 // Rutas para operaciones de coches
@@ -63,7 +72,7 @@ app.put("/coches/:id", (request, response) => {
   response.json({ message: "ok" });
 });
 
-// Borrar un coche por su índice
+// Borrar un coche por su indice
 app.delete("/coches/:id", (request, response) => {
   const id = request.params.id;
   coches = coches.filter((item, index) => index != id);
