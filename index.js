@@ -149,6 +149,7 @@ app.put("/concesionarios/:id/coches/:cocheId", (request, response) => {
 // Borrar un coche específico de un concesionario por ID de concesionario y coche
 app.delete("/concesionarios/:id/coches/:cocheId", (request, response) => {
   const id = request.params.id;
-  concesionarios = concesionarios.filter((item) => concesionarios.indexOf(item) !== id);
+  const cocheId = request.params.cocheId;
+  concesionarios[id].coches.splice(cocheId, 1);
   response.json({ message: "ok" });
 });
