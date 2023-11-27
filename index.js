@@ -45,39 +45,39 @@ let concesionarios = [
   },
 ];
 
-// Rutas para operaciones de coches
+// // Rutas para operaciones de coches
 
-// Lista todos los coches
-app.get("/coches", (request, response) => {
-  response.json(coches);
-});
+// // Lista todos los coches
+// app.get("/coches", (request, response) => {
+//   response.json(coches);
+// });
 
-// Añadir un nuevo coche
-app.post("/coches", (request, response) => {
-  coches.push(request.body);
-  response.json({ message: "ok" });
-});
+// // Añadir un nuevo coche
+// app.post("/coches", (request, response) => {
+//   coches.push(request.body);
+//   response.json({ message: "ok" });
+// });
 
-// Obtener un solo coche
-app.get("/coches/:id", (request, response) => {
-  const id = request.params.id;
-  const result = coches[id];
-  response.json({ result });
-});
+// // Obtener un solo coche
+// app.get("/coches/:id", (request, response) => {
+//   const id = request.params.id;
+//   const result = coches[id];
+//   response.json({ result });
+// });
 
-// Actualizar un solo coche
-app.put("/coches/:id", (request, response) => {
-  const id = request.params.id;
-  coches[id] = request.body;
-  response.json({ message: "ok" });
-});
+// // Actualizar un solo coche
+// app.put("/coches/:id", (request, response) => {
+//   const id = request.params.id;
+//   coches[id] = request.body;
+//   response.json({ message: "ok" });
+// });
 
-// Borrar un coche por su indice
-app.delete("/coches/:id", (request, response) => {
-  const id = request.params.id;
-  coches = coches.filter((item, index) => index != id);
-  response.json({ message: "ok" });
-});
+// // Borrar un coche por su indice
+// app.delete("/coches/:id", (request, response) => {
+//   const id = request.params.id;
+//   coches = coches.filter((item, index) => index != id);
+//   response.json({ message: "ok" });
+// });
 
 // Rutas para operaciones de concesionarios
 
@@ -118,13 +118,13 @@ app.delete("/concesionarios/:id", (request, response) => {
 // Obtener todos los coches de un concesionario por ID
 app.get("/concesionarios/:id/coches", (request, response) => {
   const id = request.params.id;
-  const result = concesionarios[id];
+  const result = concesionarios[id].coches;
   response.json({ result });
 });
 
 // Añadir un nuevo coche a un concesionario por ID
 app.post("/concesionarios/:id/coches", (request, response) => {
-  concesionarios.push(request.body);
+  concesionarios[id].coches.push(request.body);
   response.json({ message: "ok" });
 });
 
@@ -133,14 +133,16 @@ app.post("/concesionarios/:id/coches", (request, response) => {
 // Obtener un coche específico de un concesionario por ID de concesionario y coche
 app.get("/concesionarios/:id/coches/:cocheId", (request, response) => {
   const id = request.params.id;
-  const result = concesionarios[id];
-  response.json({ result });
+  const cocheId = request.params.cocheId;
+  const coches = concesionarios[id].coches[cocheId];
+  response.json({ coches });
 });
 
 // Actualizar un coche específico de un concesionario por ID de concesionario y coche
 app.put("/concesionarios/:id/coches/:cocheId", (request, response) => {
   const id = request.params.id;
-  concesionarios[id] = request.body;
+  const cocheId = request.params.cocheId;
+  concesionarios[id].coches[cocheId] = request.body;
   response.json({ message: "ok" });
 });
 
