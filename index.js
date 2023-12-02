@@ -5,12 +5,18 @@
  *      const: es constante y no se puede modificar
  */
 
+
+//Implementamos helmet para agregar seguridad
 // Importamos las bibliotecas necesarias.
 // Concretamente el framework express.
 const express = require("express");
+const helmet = require("helmet");
 
 // Inicializamos la aplicación
 const app = express();
+
+// Use Helmet como middleware para seguridad
+app.use(helmet());
 
 // Indicamos que la aplicación puede recibir JSON (API Rest)
 app.use(express.json());
