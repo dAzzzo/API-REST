@@ -5,6 +5,10 @@
  *      const: es constante y no se puede modificar
  */
 
+const { MongoClient } = require("mongodb");
+// or as an es module:
+// import { MongoClient } from 'mongodb'
+
 //Implementamos helmet para agregar seguridad
 // Importamos las bibliotecas necesarias.
 // Concretamente el framework express.
@@ -12,6 +16,33 @@ const express = require("express");
 const helmet = require("helmet");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
+const url = "mongodb://localhost:27017";
+const client = new MongoClient(url);
+
+// Database Name
+const dbName = "myProject";
+
+const db = null;
+const collection = null;
+const findResult = null;
+
+async function main() {
+  // Use connect method to connect to the server
+  await client.connect();
+  console.log("Connected successfully to server");
+  db = client.db(concesionarios);
+  collection = db.collection("documents");
+  findResult = await collection.find({}).toArray();
+
+  // the following code examples can be pasted here...
+
+  return "done.";
+}
+
+main()
+  .then(console.log)
+  .catch(console.error)
+  .finally(() => client.close());
 
 // Inicializamos la aplicación
 const app = express();
@@ -100,6 +131,7 @@ app.get("/concesionarios", (request, response) => {
 app.post("/concesionarios", (request, response) => {
   concesionarios.push(request.body);
   response.json({ message: "ok" });
+  concesionarios.save();
 });
 
 // Obtener un solo concesionario
@@ -114,6 +146,7 @@ app.put("/concesionarios/:id", (request, response) => {
   const id = request.params.id;
   concesionarios[id] = request.body;
   response.json({ message: "ok" });
+  concesionarios.save();
 });
 
 // Borrar un concesionario por su índice
@@ -121,6 +154,7 @@ app.delete("/concesionarios/:id", (request, response) => {
   const id = request.params.id;
   concesionarios = concesionarios.filter((item, index) => index != id);
   response.json({ message: "ok" });
+  concesionarios.save();
 });
 
 // Rutas para operaciones de coches en concesionarios
@@ -136,6 +170,7 @@ app.get("/concesionarios/:id/coches", (request, response) => {
 app.post("/concesionarios/:id/coches", (request, response) => {
   concesionarios[id].coches.push(request.body);
   response.json({ message: "ok" });
+  concesionarios.save();
 });
 
 // Rutas para operaciones de coches específicos en un concesionario
@@ -154,6 +189,7 @@ app.put("/concesionarios/:id/coches/:cocheId", (request, response) => {
   const cocheId = request.params.cocheId;
   concesionarios[id].coches[cocheId] = request.body;
   response.json({ message: "ok" });
+  concesionarios.save();
 });
 
 // Borrar un coche específico de un concesionario por ID de concesionario y coche
@@ -162,4 +198,5 @@ app.delete("/concesionarios/:id/coches/:cocheId", (request, response) => {
   const cocheId = request.params.cocheId;
   concesionarios[id].coches.splice(cocheId, 1);
   response.json({ message: "ok" });
+  concesionarios.save();
 });

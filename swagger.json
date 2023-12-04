@@ -137,38 +137,37 @@
         }
       }
     },
-    "paths": {
-      "/Concesionarios/{id}/coches": {
-        "get": {
-          "summary": "Get all coches de concesionario.",
-          "responses": {
-            "200": {
-              "description": "Array with coches de concesionario.",
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/concesionarios"
-                }
-              }
-            }
-          }
-        },
-        "post": {
-          "summary": "Create a coches de concesionario.",
-          "consumes": ["application/json"],
-          "parameters": [
-            {
-              "in": "body",
-              "name": "coches",
-              "schema": {
+
+    "/Concesionarios/{id}/coches": {
+      "get": {
+        "summary": "Get all coches de concesionario.",
+        "responses": {
+          "200": {
+            "description": "Array with coches de concesionario.",
+            "schema": {
+              "type": "array",
+              "items": {
                 "$ref": "#/definitions/concesionarios"
               }
             }
-          ],
-          "responses": {
-            "200": {
-              "description": "{message: 'ok'}"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a coches de concesionario.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "concesionarios",
+            "schema": {
+              "$ref": "#/definitions/concesionarios"
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{message: 'ok'}"
           }
         }
       }
