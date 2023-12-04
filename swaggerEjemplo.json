@@ -1,0 +1,120 @@
+{
+  "swagger": "2.0",
+  "basePath": "/",
+  "info": {
+    "title": "Concesionarios API",
+    "version": "1.0.2"
+  },
+  "definitions": {
+    "Coche": {
+      "type": "object",
+      "properties": {
+        "marca": {
+          "type": "string"
+        },
+        "modelo": {
+          "type": "string"
+        }
+      },
+      "required": ["marca", "modelo"]
+    }
+  },
+  "paths": {
+    "/coches": {
+      "get": {
+        "summary": "Get all coches.",
+        "responses": {
+          "200": {
+            "description": "Array with coches.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Coche"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a coches.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "coche",
+            "schema": {
+              "$ref": "#/definitions/Coche"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{message: 'ok'}"
+          }
+        }
+      }
+    },
+    "/coches/{cocheId}": {
+      "get": {
+        "summary": "Get one coches by ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cocheId",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetch one coche.",
+            "schema": {
+              "$ref": "#/definitions/Coche"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update one Coche by Id.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cocheId",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "coche",
+            "schema": {
+              "$ref": "#/definitions/Coche"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{message: 'ok'}"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete one Coche by Id.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cocheId",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{message: 'ok'}"
+          }
+        }
+      }
+    }
+  }
+}

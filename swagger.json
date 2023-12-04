@@ -1,0 +1,257 @@
+{
+  "swagger": "2.0",
+  "basePath": "/",
+  "info": {
+    "title": "Concesionarios API",
+    "version": "1.0.2"
+  },
+  "definitions": {
+    "Coche": {
+      "type": "object",
+      "properties": {
+        "marca": {
+          "type": "string"
+        },
+        "modelo": {
+          "type": "string"
+        }
+      },
+      "required": ["marca", "modelo"]
+    },
+    "concesionarios": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "direccion": {
+          "type": "string"
+        },
+        "listado": {
+          "type": "string"
+        },
+        "coches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Coche"
+          }
+        }
+      },
+      "required": ["nombre", "direccion", "listado"]
+    }
+  },
+  "paths": {
+    "/Concesionarios": {
+      "get": {
+        "summary": "Get all concesionarios.",
+        "responses": {
+          "200": {
+            "description": "Array with concesionarios.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/concesionarios"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a concesionarios.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "concesionarios",
+            "schema": {
+              "$ref": "#/definitions/concesionarios"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{message: 'ok'}"
+          }
+        }
+      }
+    },
+    "/concesionarios/{id}": {
+      "get": {
+        "summary": "Get one concesionario by ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetch one concesionario.",
+            "schema": {
+              "$ref": "#/definitions/concesionarios"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update one concesionario by Id.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "concesionario",
+            "schema": {
+              "$ref": "#/definitions/concesionarios"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{message: 'ok'}"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete one concesionarios by Id.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{message: 'ok'}"
+          }
+        }
+      }
+    },
+    "paths": {
+      "/Concesionarios/{id}/coches": {
+        "get": {
+          "summary": "Get all coches de concesionario.",
+          "responses": {
+            "200": {
+              "description": "Array with coches de concesionario.",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/concesionarios"
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Create a coches de concesionario.",
+          "consumes": ["application/json"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "coches",
+              "schema": {
+                "$ref": "#/definitions/concesionarios"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "{message: 'ok'}"
+            }
+          }
+        }
+      }
+    },
+    "/Concesionarios/{id}/coches/{cocheId}": {
+      "get": {
+        "summary": "Get one coche by cocheId de concesionario.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "cocheId",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetch one coche by cocheId de concesionario.",
+            "schema": {
+              "$ref": "#/definitions/concesionarios"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update one coche by cocheId de concesionario.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "cocheId",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "concesionario",
+            "schema": {
+              "$ref": "#/definitions/concesionarios"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{message: 'ok'}"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete one concesionarios by Id.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "cocheId",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{message: 'ok'}"
+          }
+        }
+      }
+    }
+  }
+}

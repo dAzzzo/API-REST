@@ -5,12 +5,13 @@
  *      const: es constante y no se puede modificar
  */
 
-
 //Implementamos helmet para agregar seguridad
 // Importamos las bibliotecas necesarias.
 // Concretamente el framework express.
 const express = require("express");
 const helmet = require("helmet");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 
 // Inicializamos la aplicación
 const app = express();
@@ -20,6 +21,9 @@ app.use(helmet());
 
 // Indicamos que la aplicación puede recibir JSON (API Rest)
 app.use(express.json());
+
+//configuramos el swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Indicamos el puerto en el que vamos a desplegar la aplicación
 const port = process.env.PORT || 8080;
@@ -53,9 +57,9 @@ let concesionarios = [
 
 // // Rutas para operaciones de coches
 
-// // Lista todos los coches
+// Lista todos los coches
 // app.get("/coches", (request, response) => {
-//   response.json(coches);
+//  response.json(concesionarios);
 // });
 
 // // Añadir un nuevo coche
