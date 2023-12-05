@@ -141,13 +141,21 @@
     "/Concesionarios/{id}/coches": {
       "get": {
         "summary": "Get all coches de concesionario.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "Array with coches de concesionario.",
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/concesionarios"
+                "$ref": "#/definitions/Coche"
               }
             }
           }
@@ -158,13 +166,20 @@
         "consumes": ["application/json"],
         "parameters": [
           {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
             "in": "body",
-            "name": "concesionarios",
+            "name": "coche",
             "schema": {
-              "$ref": "#/definitions/concesionarios"
+              "$ref": "#/definitions/Coche"
             }
           }
         ],
+
         "responses": {
           "200": {
             "description": "{message: 'ok'}"
