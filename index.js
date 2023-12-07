@@ -20,18 +20,18 @@ const url = "mongodb://localhost:27017";
 const client = new MongoClient(url);
 
 // Database Name
-const dbName = "myProject";
+const dbName = "concesionarios";
 
-const db = null;
-const collection = null;
-const findResult = null;
+let db = null;
+let collection = null;
+let findResult = null;
 
 async function main() {
   // Use connect method to connect to the server
   await client.connect();
   console.log("Connected successfully to server");
   db = client.db(concesionarios);
-  collection = db.collection("documents");
+  collection = db.collection("concesionario");
   findResult = await collection.find({}).toArray();
 
   // the following code examples can be pasted here...
