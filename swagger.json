@@ -82,7 +82,7 @@
           {
             "in": "path",
             "name": "id",
-            "type": "integer",
+            "type": "string",
             "required": true
           }
         ],
@@ -102,7 +102,7 @@
           {
             "in": "path",
             "name": "id",
-            "type": "integer",
+            "type": "string",
             "required": true
           },
           {
@@ -126,7 +126,7 @@
           {
             "in": "path",
             "name": "id",
-            "type": "integer",
+            "type": "string",
             "required": true
           }
         ],

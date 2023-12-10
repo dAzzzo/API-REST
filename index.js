@@ -5,7 +5,7 @@
  *      const: es constante y no se puede modificar
  */
 
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 // or as an es module:
 // import { MongoClient } from 'mongodb'
 
@@ -19,6 +19,7 @@ const swaggerDocument = require("./swagger.json");
 const url = "mongodb://localhost:27017/concesionarios";
 const client = new MongoClient(url);
 
+
 // Database Name
 const dbName = "concesionarios";
 
@@ -30,13 +31,13 @@ async function main() {
   // Use connect method to connect to the server
   await client.connect();
   console.log("Connected successfully to server");
-<<<<<<< HEAD
+
   db = client.db(concesionarios);
   collection = db.collection("concesionario");
-=======
+
   db = client.db();
   collection = db.collection("concesionarios");
->>>>>>> 8074eb33af8c340aac2d894d3b10f380f6d467b3
+
   findResult = await collection.find({}).toArray();
 
   // the following code examples can be pasted here...
@@ -46,8 +47,8 @@ async function main() {
 
 main()
   .then(console.log)
-  .catch(console.error)
-  .finally(() => client.close());
+  .catch(console.error);
+  
 
 // Inicializamos la aplicación
 const app = express();
@@ -157,7 +158,7 @@ app.get("/concesionarios/:id", async (request, response) => {
   try {
     const id = request.params.id;
     const collection = db.collection("concesionarios");
-    const result = await collection.findOne({ _id: ObjectId(id) });
+    const result = await collection.findOne({ _id: new ObjectId(id) });
     response.json({ result });
   } catch (err) {
     console.error(err);
@@ -171,7 +172,7 @@ app.put("/concesionarios/:id", async (request, response) => {
     const id = request.params.id;
     const updatedConcesionario = request.body;
     const collection = db.collection("concesionarios");
-    await collection.updateOne({ _id: ObjectId(id) }, { $set: updatedConcesionario });
+    await collection.updateOne({ _id: new ObjectId(id) }, { $set: updatedConcesionario });
     response.json({ message: "Concesionario actualizado" });
   } catch (err) {
     console.error(err);
@@ -184,7 +185,7 @@ app.delete("/concesionarios/:id", async (request, response) => {
   try {
     const id = request.params.id;
     const collection = db.collection("concesionarios");
-    await collection.deleteOne({ _id: ObjectId(id) });
+    await collection.deleteOne({ _id: new ObjectId(id) });
     response.json({ message: "Concesionario eliminado" });
   } catch (err) {
     console.error(err);
@@ -199,7 +200,7 @@ app.get("/concesionarios/:id/coches", async (request, response) => {
   try {
     const id = request.params.id;
     const collection = db.collection("concesionarios");
-    const result = await collection.findOne({ _id: ObjectId(id) }, { coches: 1 });
+    const result = await collection.findOne({ _id: new ObjectId(id) }, { coches: 1 });
     response.json({ result: result.coches });
   } catch (err) {
     console.error(err);
@@ -213,7 +214,7 @@ app.post("/concesionarios/:id/coches", async (request, response) => {
     const id = request.params.id;
     const nuevoCoche = request.body;
     const collection = db.collection("concesionarios");
-    await collection.updateOne({ _id: ObjectId(id) }, { $push: { coches: nuevoCoche } });
+    await collection.updateOne({ _id: new ObjectId(id) }, { $push: { coches: nuevoCoche } });
     response.json({ message: "Coche añadido al concesionario" });
   } catch (err) {
     console.error(err);
@@ -229,7 +230,7 @@ app.get("/concesionarios/:id/coches/:cocheId", async (request, response) => {
     const id = request.params.id;
     const cocheId = request.params.cocheId;
     const collection = db.collection("concesionarios");
-    const result = await collection.findOne({ _id: ObjectId(id) }, { coches: 1 });
+    const result = await collection.findOne({ _id: new ObjectId(id) }, { coches: 1 });
     const coche = result.coches[cocheId];
     response.json({ coche });
   } catch (err) {
@@ -246,7 +247,7 @@ app.put("/concesionarios/:id/coches/:cocheId", async (request, response) => {
     const updatedCoche = request.body;
     const collection = db.collection("concesionarios");
     await collection.updateOne(
-      { _id: ObjectId(id), "coches._id": ObjectId(cocheId) },
+      { _id: new ObjectId(id), "coches._id": new ObjectId(cocheId) },
       { $set: { "coches.$": updatedCoche } }
     );
     response.json({ message: "Coche actualizado" });
@@ -263,8 +264,8 @@ app.delete("/concesionarios/:id/coches/:cocheId", async (request, response) => {
     const cocheId = request.params.cocheId;
     const collection = db.collection("concesionarios");
     await collection.updateOne(
-      { _id: ObjectId(id) },
-      { $pull: { coches: { _id: ObjectId(cocheId) } } }
+      { _id: new ObjectId(id) },
+      { $pull: { coches: { _id: new ObjectId(cocheId) } } }
     );
     response.json({ message: "Coche eliminado del concesionario" });
   } catch (err) {
