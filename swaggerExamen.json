@@ -1,0 +1,274 @@
+{
+  "swagger": "2.0",
+  "basePath": "/",
+  "info": {
+    "title": "Greidsla API",
+    "version": "1.0.2"
+  },
+  "definitions": {
+    "pucket": {
+      "type": "object",
+      "properties": {
+        "descripcion": {
+          "type": "string"
+        },
+        "precio": {
+          "type": "integer"
+        },
+        "cantidad": {
+          "type": "integer"
+        }
+      },
+      "required": ["descripcion", "precio", "cantidad"]
+    },
+    "greidsla": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "fecha": {
+          "type": "string"
+        },
+        "ciudad": {
+          "type": "string"
+        },
+        "pucket": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pucket"
+          }
+        }
+      },
+      "required": ["nombre", "fecha", "ciudad"]
+    }
+  },
+  "paths": {
+    "/greidsla": {
+      "get": {
+        "summary": "Get all greidsla.",
+        "responses": {
+          "200": {
+            "description": "Array with greidsla.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/greidsla"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a greidsla.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "greidsla",
+            "schema": {
+              "$ref": "#/definitions/greidsla"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{message: 'ok'}"
+          }
+        }
+      }
+    },
+    "/greidsla/{id}": {
+      "get": {
+        "summary": "Get one greidsla by ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetch one greidsla.",
+            "schema": {
+              "$ref": "#/definitions/greidsla"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update one greidsla by Id.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "greidsla",
+            "schema": {
+              "$ref": "#/definitions/greidsla"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{message: 'ok'}"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete one greidsla by Id.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{message: 'ok'}"
+          }
+        }
+      }
+    },
+
+    "/greidsla/{id}/pucket": {
+      "get": {
+        "summary": "Get all pucket de greidsla.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array with pucket de greidsla.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/pucket"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a pucket de greidsla.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "pucket",
+            "schema": {
+              "$ref": "#/definitions/pucket"
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "{message: 'ok'}"
+          }
+        }
+      }
+    },
+    "/greidsla/{id}/pucket/{pucketId}": {
+      "get": {
+        "summary": "Get one pucket by pucketId de greidsla.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "pucketId",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fetch one pucket by pucketId de greidsla.",
+            "schema": {
+              "$ref": "#/definitions/greidsla"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update one pucket by pucketId de greidsla.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "pucketId",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "greidsla",
+            "schema": {
+              "$ref": "#/definitions/greidsla"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{message: 'ok'}"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete one greidsla by Id.",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "pucketId",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "{message: 'ok'}"
+          }
+        }
+      }
+    }
+  }
+}

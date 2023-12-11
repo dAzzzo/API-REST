@@ -19,7 +19,6 @@ const swaggerDocument = require("./swagger.json");
 const url = "mongodb://localhost:27017/concesionarios";
 const client = new MongoClient(url);
 
-
 // Database Name
 const dbName = "concesionarios";
 
@@ -40,15 +39,10 @@ async function main() {
 
   findResult = await collection.find({}).toArray();
 
-  // the following code examples can be pasted here...
-
   return "done.";
 }
 
-main()
-  .then(console.log)
-  .catch(console.error);
-  
+main().then(console.log).catch(console.error);
 
 // Inicializamos la aplicación
 const app = express();
