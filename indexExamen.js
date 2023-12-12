@@ -31,7 +31,7 @@ let findResult = null;
 async function main() {
   // Use connect method to connect to the server
   await client.connect();
-  console.log("Connected successfully to server");
+  console.log("Arriba Perú csmr!!!");
 
   db = client.db(greidsla);
   collection = db.collection("greidsla");
