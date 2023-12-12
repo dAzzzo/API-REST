@@ -18,7 +18,7 @@ const express = require("express");
 const helmet = require("helmet");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swaggerExamen.json");
-const url = "mongodb://localhost:27017/greidsla";
+const url = "mongodb://127.0.0.1:27017";
 const client = new MongoClient(url);
 
 // Database Name
@@ -31,7 +31,6 @@ let findResult = null;
 async function main() {
   // Use connect method to connect to the server
   await client.connect();
-  console.log("Arriba Perú csmr!!!");
 
   db = client.db(greidsla);
   collection = db.collection("greidsla");
